@@ -109,7 +109,7 @@
 					break;
 			}
 			//if we have reached end of world or a wall return false
-			if ( world[front[1]][front[0]] === undefined || world[front[1]][front[0]] === 'X' ){
+			if ( front[1] < 0 || front[1] >= world.length || front[0] < 0 || front[0] >= world[front[1]].length ||  world[front[1]][front[0]] === 'X' ){
 				return false;
 			} 
 			return true;
@@ -134,7 +134,7 @@
 					break;
 			}
 			//if we have reached end of world or a wall return false
-			if ( world[left[1]][left[0]] === undefined || world[left[1]][left[0]] === 'X' ){
+			if ( left[1] < 0 || left[1] >= world.length || left[0] <0 || left[0] >= world[left[1]].length ||  world[left[1]][left[0]] === 'X' ){
 				return false;
 			} 
 			return true;
@@ -159,7 +159,7 @@
 					break;
 			}
 			//if we have reached end of world or a wall return false
-			if ( world[right[1]][right[0]] === undefined || world[right[1]][right[0]] === 'X' ){
+			if ( right[1] < 0 || right[1] >= world.length || right[0] <0 || right[0] >= world[right[1]].length ||  world[right[1]][right[0]] === 'X') {
 				return false;
 			} 
 			return true;
@@ -233,27 +233,27 @@
 		var content = "<div id='matrix'><table>";
 		//loop over world
 		for ( y in world ){
-			content = content + "<tr style='height:30px;'>";
+			content += "<tr style='height:30px;'>";
 			for ( x in world[y] )	{
 				//if position is KAREL else draw world
 				if( x == karel.position[0] && y == karel.position[1] ){		
-					content = content + "<td class='karel' >K</td>";
+					content += "<td class='karel' >K</td>";
 				} else {
-					content = content + "<td>" + world[y][x] + "</td>";
+					content += "<td>" + world[y][x] + "</td>";
 				}
 			}	
-			content = content + "</tr>";	
+			content += "</tr>";	
 		}
-		content = content + "</table></div>";
-		content = content + "<div id='karelinfo'>";
-		content = content + "<p>Position: " + karel.position[0] + ", " + karel.position[1] + "<p>";
-		content = content + "<p>Direction: " + karel.direction + "<p>";
-		content = content + "<p>Beepers: " + karel.beepers + "<p>";
-		content = content + "</div>";
+		content += "</table></div>";
+		content += "<div id='karelinfo'>";
+		content += "<p>Position: " + karel.position[0] + ", " + karel.position[1] + "<p>";
+		content += "<p>Direction: " + karel.direction + "<p>";
+		content += "<p>Beepers: " + karel.beepers + "<p>";
+		content += "</div>";
 		elem.append(content);
 	}; //drawWorld
 
-	var snippet  = "";
+	var snippet  = "/* help karel (K) move around his world avoiding obstacles (X) and collecting beepers. */\n";
 	snippet += "var moveAndPick = function(){\n";
 	snippet += "	move();\n";
   	snippet += "		while(beepersPresent()){\n";
@@ -284,13 +284,11 @@
 	snippet += "};\n";
 	snippet += "\n";
 	snippet += "var run = (function(){\n";
-	snippet += "  for(var i=0; i<3; i++){\n";
-	snippet += "    traverseRow();\n";
-	snippet += "    turnAround();\n";
-	snippet += "    traverseRow();\n";
-	snippet += "    turnAround();\n";
-	snippet += "  }\n";
-	snippet += "  traverseRow();\n";
+  	snippet += "	traverseRow();\n";
+  	snippet += "	while( (facingEast() && rightIsClear()) || (facingWest() && leftIsClear()) ){\n";
+    snippet += "		turnAround();\n";
+    snippet += "		traverseRow();\n";
+  	snippet += "	}\n";
 	snippet += "})();\n";
 
 
