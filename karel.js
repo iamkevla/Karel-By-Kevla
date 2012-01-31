@@ -79,7 +79,9 @@
 			}
 		},//pickBeeper
 		play: function(){
-			localStorage.setItem('mycode', editor.getValue());
+			if ( localStorage !== null ) {
+				localStorage.setItem('mycode', editor.getValue());
+			}	
 			with (this) {
 				try {
  					eval(editor.getValue());
@@ -286,8 +288,8 @@
 	snippet += "var run = (function(){\n";
   	snippet += "	traverseRow();\n";
   	snippet += "	while( (facingEast() && rightIsClear()) || (facingWest() && leftIsClear()) ){\n";
-    snippet += "		turnAround();\n";
-    snippet += "		traverseRow();\n";
+    	snippet += "		turnAround();\n";
+    	snippet += "		traverseRow();\n";
   	snippet += "	}\n";
 	snippet += "})();\n";
 
@@ -304,8 +306,11 @@
 	  	}
 	});
 	var hlLine = editor.setLineClass(0, "activeline");
-	
-	editor.setValue(localStorage.getItem('mycode') || snippet);
+	if ( localStorage === null ) {
+		editor.setValue(localStorage.getItem( snippet);	
+	} else {	
+		editor.setValue(localStorage.getItem('mycode') || snippet);
+	}
 
 	karel.init();
 
