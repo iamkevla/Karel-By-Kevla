@@ -1,0 +1,18 @@
+body {font-family:verdana;}
+
+.karel {color: red;}
+
+table {border: 1px solid black;}
+
+td { text-align:center; width:30px; height:30px;}
+
+.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+.activeline {background: #e8f2ff !important;}
+
+#myWorld div {padding:20px;}
+
+
+#myWorld { width: 100%;}
+#matrix { color: green; float: left;}
+#karelinfo {color: blue;float: left;}
+#instructions{color:gray; float: right;}
