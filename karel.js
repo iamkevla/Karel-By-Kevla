@@ -79,7 +79,7 @@
 			}
 		},//pickBeeper
 		play: function(){
-			if ( localStorage !== null ) {
+			if ( localStorage !== undefined ) {
 				localStorage.setItem('mycode', editor.getValue());
 			}	
 			with (this) {
@@ -306,10 +306,11 @@
 	  	}
 	});
 	var hlLine = editor.setLineClass(0, "activeline");
-	if ( localStorage === null ) {
-		editor.setValue( snippet );	
-	} else {	
+	
+	if ( localStorage !== undefined ) {
 		editor.setValue(localStorage.getItem('mycode') || snippet);
+	} else {	
+		editor.setValue( snippet );	
 	}
 
 	karel.init();
