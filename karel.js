@@ -307,7 +307,7 @@
 	});
 	var hlLine = editor.setLineClass(0, "activeline");
 	if ( localStorage === null ) {
-		editor.setValue(localStorage.getItem( snippet);	
+		editor.setValue( snippet );	
 	} else {	
 		editor.setValue(localStorage.getItem('mycode') || snippet);
 	}
