@@ -1,26 +1,30 @@
 <!--
  $(document).ready(function(){
 
-	var world = [[0,0,1,0,'X',0,0],
+	var setWorld = function(w){
+		switch(w){
+			default:	
+				return([[0,0,1,0,'X',1,0],
 				 [0,0,0,0,0,0,0],
 				 [0,0,0,0,0,0,0],
-				 [0,0,0,0,1,0,0],
+				 ['X',0,0,0,1,0,0],
+				 [1,0,0,0,0,0,0],
 				 [0,0,0,0,0,0,0],
-				 [0,0,0,0,0,0,0],
-				 [0,1,0,0,0,0,0]];
+				 [0,1,0,0,0,0,0]]);
+		}
+	};
+
+	var world = setWorld();
+	console.dir(world);
 
 	var karel = { 
-		name:"Karel",
-		position:[0,0],
-		beepers: 10,
-		direction: "east",
-		init: function(){
-			this.position = [0,0];
-			this.beepers = 10;
-			this.direction = 'east';
-			drawWorld($('#myWorld'));
+		init: function(pos,beeps,dir){
+			this.position = pos || [0,0];
+			this.beepers = beeps || 10;
+			this.direction = dir || 'east';		
 		}, //init
-		move:function(){
+
+		move: function(){
 			if(this.frontIsClear()){
 				switch(this.direction){
 					case "east":
@@ -36,13 +40,14 @@
 						this.position[1]++;
 						break;	
 				} //switch
-				drawWorld($('#myWorld'));
+				//drawWorld($('#myWorld'));
 			} else {
 				//raise error
 				throw "karel cannot perform request! - path not clear";
 			}
 		}, //move
-		turnLeft:function(){
+		
+		turnLeft: function(){
 			switch(this.direction){
 				case "east":
 					this.direction = "north";
@@ -57,13 +62,13 @@
 					this.direction = "east";
 					break;	
 			}//switch
-			drawWorld($('#myWorld'));
+			//drawWorld($('#myWorld'));
 		}, //turnLeft
 		putBeeper: function(){
 			if ( this.beepers > 0){
 				world[this.position[1]][this.position[0]]++;
 				this.beepers--;
-				drawWorld($('#myWorld'));
+				//drawWorld($('#myWorld'));
 			} else { 
 				throw "karel cannot perform request! - no beepers in bag";
 			}
@@ -72,7 +77,7 @@
 			if (world[this.position[1]][this.position[0]] > 0) {
 				world[this.position[1]][this.position[0]]--;
 				this.beepers++;
-				drawWorld($('#myWorld'));
+				//drawWorld($('#myWorld'));
 			} else {
 				throw "karel cannot perform this request! - no beepers";
 
@@ -87,6 +92,7 @@
  					eval(editor.getValue());
   					} //try
 				catch(err) {
+					console.dir(err);
   					txt="There was an error on this page.\n\n";
   					txt+="Error description: " + err.message + "\n\n";
   					txt+="Click OK to continue.\n\n";
@@ -221,16 +227,8 @@
 		},
 	};//karel
 
-	$('#play').click(function(){
-		karel.play();
-	});
-
-	$('#init').click(function(){
-		karel.init();
-	});
-
 	
-	var drawWorld = function(elem){
+	var drawWorld = function( karel, elem){
 		elem.html(''); // clear div
 		var content = "<div id='matrix'><table>";
 		//loop over world
@@ -313,7 +311,31 @@
 		editor.setValue( snippet );	
 	}
 
-	karel.init();
+	if (typeof Object.create !== 'function' ) {
+		Object.create = function (o) {
+			var F = function () {};	
+			F.prototype = o;
+			return new F();
+		};
+	}
+
+	var myKarel = Object.create(karel);
+	
+	myKarel.init();
+
+
+	$('#play').click(function(){
+		myKarel.play();
+		drawWorld(myKarel,$('#myWorld'));
+	});
+
+	$('#init').click(function(){
+		myKarel.init();
+		world = setWorld();
+		drawWorld(myKarel,$('#myWorld'));
+	});
+
+	drawWorld(myKarel,$('#myWorld'));
 
 });//document ready
 -->
