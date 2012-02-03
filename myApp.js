@@ -1,7 +1,4 @@
-<!--
- $(document).ready(function(){
-
-	var world = [[0,0,1,0,'X',0,0],
+var world = [[0,0,1,0,'X',0,0],
 				 [0,0,0,0,0,0,0],
 				 [0,0,0,0,0,0,0],
 				 [0,0,0,0,1,0,0],
@@ -65,7 +62,7 @@
 				this.beepers--;
 				drawWorld($('#myWorld'));
 			} else { 
-				throw "karel cannot perform request! - no beepers in bag";
+				throw "karel cannot perform this request! - no beepers in bag";
 			}
 		},//putBeeper
 		pickBeeper: function(){
@@ -221,15 +218,6 @@
 		},
 	};//karel
 
-	$('#play').click(function(){
-		karel.play();
-	});
-
-	$('#init').click(function(){
-		karel.init();
-	});
-
-	
 	var drawWorld = function(elem){
 		elem.html(''); // clear div
 		var content = "<div id='matrix'><table>";
@@ -255,65 +243,40 @@
 		elem.append(content);
 	}; //drawWorld
 
-	var snippet  = "/* help karel (K) move around his world avoiding obstacles (X) and collecting beepers. */\n";
-		snippet += "var moveAndPick = function(){\n";
-		snippet += "	move();\n";
-	  	snippet += "	while(beepersPresent()){\n";
-	  	snippet += "  		pickBeeper();\n";
-	  	snippet += "	}\n";
-		snippet += "};\n";
-		snippet += "\n";
-		snippet += "var turnRight = function(){\n";
-		snippet += "  turnLeft();\n";
-		snippet += "  turnLeft();\n";
-		snippet += "  turnLeft();\n";
-		snippet += "};\n";
-		snippet += "\n";
-		snippet += "var turnAround = function(){\n";
-		snippet += "  if( facingEast() ){\n";
-		snippet += "    turnRight();\n";
-		snippet += "    moveAndPick();\n";
-		snippet += "    turnRight();\n";
-		snippet += "  } else {\n";
-		snippet += "    turnLeft();\n";
-		snippet += "    moveAndPick();\n";
-		snippet += "    turnLeft();\n";
-		snippet += "  }\n";
-		snippet += "};\n";
-		snippet += "\n";
-		snippet += "var traverseRow = function(){\n";
-		snippet += "  while( frontIsClear() ){ moveAndPick() };\n";
-		snippet += "};\n";
-		snippet += "\n";
-		snippet += "var run = (function(){\n";
-	  	snippet += "	traverseRow();\n";
-	  	snippet += "	while( (facingEast() && rightIsClear()) || (facingWest() && leftIsClear()) ){\n";
-    	snippet += "		turnAround();\n";
-    	snippet += "		traverseRow();\n";
-  		snippet += "	}\n";
-		snippet += "})();\n";
-
-
-	var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
-	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-	  	mode: "javascript",
-	  	lineNumbers: true,
-	  	lineWrapping: true,
-	  	onGutterClick: foldFunc,	
-	  	onCursorActivity: function() {
-	    	editor.setLineClass(hlLine, null);
-	    	hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-	  	}
-	});
-	var hlLine = editor.setLineClass(0, "activeline");
-	
-	if ( localStorage !== undefined ) {
-		editor.setValue(localStorage.getItem('mycode') || snippet);
-	} else {	
-		editor.setValue( snippet );	
-	}
-
-	karel.init();
-
-});//document ready
--->
+		var snippet  = "/* help karel (K) move around his world avoiding obstacles (X) and collecting beepers. */\n";
+	snippet += "var moveAndPick = function(){\n";
+	snippet += "	move();\n";
+  	snippet += "		while(beepersPresent()){\n";
+  	snippet += "  			pickBeeper();\n";
+  	snippet += "	}\n";
+	snippet += "};\n";
+	snippet += "\n";
+	snippet += "var turnRight = function(){\n";
+	snippet += "	turnLeft();\n";
+	snippet += "	turnLeft();\n";
+	snippet += "	turnLeft();\n";
+	snippet += "};\n";
+	snippet += "\n";
+	snippet += "var turnAround = function(){\n";
+	snippet += "	if( facingEast() ){\n";
+	snippet += "		turnRight();\n";
+	snippet += "    	moveAndPick();\n";
+	snippet += "    	turnRight();\n";
+	snippet += "  	} else {\n";
+	snippet += "    	turnLeft();\n";
+	snippet += "    	moveAndPick();\n";
+	snippet += "    	turnLeft();\n";
+	snippet += "  	}\n";
+	snippet += "};\n";
+	snippet += "\n";
+	snippet += "var traverseRow = function(){\n";
+	snippet += "	while( frontIsClear() ){ moveAndPick() };\n";
+	snippet += "};\n";
+	snippet += "\n";
+	snippet += "var run = (function(){\n";
+  	snippet += "	traverseRow();\n";
+  	snippet += "	while( (facingEast() && rightIsClear()) || (facingWest() && leftIsClear()) ){\n";
+    snippet += "		turnAround();\n";
+    snippet += "		traverseRow();\n";
+  	snippet += "	}\n";
+	snippet += "})();\n";
