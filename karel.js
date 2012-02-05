@@ -1,6 +1,3 @@
-<!--
- $(document).ready(function(){
-
 	var setWorld = function(w){
 		switch(w){
 			default:	
@@ -15,7 +12,7 @@
 	};
 
 	var world = setWorld();
-	console.dir(world);
+	//console.dir(world);
 
 	var karel = { 
 		init: function(pos,beeps,dir){
@@ -84,15 +81,11 @@
 			}
 		},//pickBeeper
 		play: function(){
-			if ( localStorage !== undefined ) {
-				localStorage.setItem('mycode', editor.getValue());
-			}	
 			with (this) {
 				try {
  					eval(editor.getValue());
   					} //try
 				catch(err) {
-					console.dir(err);
   					txt="There was an error on this page.\n\n";
   					txt+="Error description: " + err.message + "\n\n";
   					txt+="Click OK to continue.\n\n";
@@ -291,51 +284,13 @@
   		snippet += "	}\n";
 		snippet += "})();\n";
 
-
-	var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
-	var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-	  	mode: "javascript",
-	  	lineNumbers: true,
-	  	lineWrapping: true,
-	  	onGutterClick: foldFunc,	
-	  	onCursorActivity: function() {
-	    	editor.setLineClass(hlLine, null);
-	    	hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-	  	}
-	});
-	var hlLine = editor.setLineClass(0, "activeline");
-	
-	if ( localStorage !== undefined ) {
-		editor.setValue(localStorage.getItem('mycode') || snippet);
-	} else {	
-		editor.setValue( snippet );	
-	}
-
-	if (typeof Object.create !== 'function' ) {
-		Object.create = function (o) {
-			var F = function () {};	
-			F.prototype = o;
-			return new F();
-		};
-	}
-
-	var myKarel = Object.create(karel);
-	
-	myKarel.init();
+		if (typeof Object.create !== 'function' ) {
+			Object.create = function (o) {
+				var F = function () {};	
+				F.prototype = o;
+				return new F();
+			};
+		}
 
 
-	$('#play').click(function(){
-		myKarel.play();
-		drawWorld(myKarel,$('#myWorld'));
-	});
 
-	$('#init').click(function(){
-		myKarel.init();
-		world = setWorld();
-		drawWorld(myKarel,$('#myWorld'));
-	});
-
-	drawWorld(myKarel,$('#myWorld'));
-
-});//document ready
--->
