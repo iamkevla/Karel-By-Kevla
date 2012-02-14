@@ -10,17 +10,17 @@
 		<h1>Karel by Kevla</h1>
 		
 		<div>
-			<div  style="float: right;"><button id="play" >Run</button> <button id="init" >Reset</button></div>
+			<div id="btns" ><button id="play" >Run</button> <button id="init" >Reset</button></div>
 			<form>
-				<textarea name="code" id="code" ></textarea>
+				<textarea id="code" ></textarea>
 			</form>
 		</div>
-		<div id="footer" style="float:none;" >
+		<div id="btmPanel" >
 			<div id="myWorld" >Creating Karels World...</div>
 
 			<div id="instructions" >
 				<h3>karel can...</h3>
-				<div style="float:left;">
+				<div class="lstPanel" >
 					<ul>
 						<li>move();</li>
 						<li>turnLeft();</li>
@@ -28,7 +28,7 @@
 						<li>putBeeper();</li>
 					</ul>
 				</div>
-				<div style="float:left;" >
+				<div class="lstPanel"  >
 					<ul>
 						<li>frontIsClear()</li>
 						<li>leftIsClear()</li>
@@ -40,7 +40,7 @@
 						<li>facingWest()</li>
 					</ul>
 				</div>	
-				<div style="float:left;" >
+				<div class="lstPanel"  >
 					<ul>
 						<li>frontIsBlocked()</li>
 						<li>leftIsBlocked()</li>
@@ -52,7 +52,7 @@
 						<li>notFacingWest()</li>
 					</ul>
 				</div>	
-				<div style="float:left; width:220px;" >
+				<div id="longlist" class="lstPanel" style="width:220px;" >
 					<ul>
 						<li style="word-wrap: break-word" >var func = function () { statements };</li>
 						<li style="word-wrap: break-word" >if ( condition ) { statements } else { statements }</li>

@@ -1,18 +1,28 @@
-body {font-family:verdana;}
+body { font-family: verdana; }
 
-.karel {color: red;}
+#btns { float: right;}
 
-table {border: 1px solid black;}
+#btmPanel { float: none; }
 
-td { text-align:center; width:30px; height:30px;}
+.lstPanel { float: left; }
 
-.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black; height:30%;}
-.activeline {background: #e8f2ff !important;}
+#longlist { width: 220px; }
 
-#myWorld div {padding:20px;}
+.karel { color: red; }
+
+table { border: 1px solid black; }
+
+td { text-align: center; width: 30px; height: 30px;}
+
+.CodeMirror { border-top: 1px solid black; border-bottom: 1px solid black; height: 30%;}
+.activeline { background: #e8f2ff !important;}
 
 
 #myWorld { width: 100%;}
+#myWorld div { padding: 20px;}
+
+
+
 #matrix { color: green; float: left;}
-#karelinfo {color: blue;float: left;}
-#instructions{color:gray; float: right;}
+#karelinfo { color: blue; float: left;}
+#instructions{ color: gray; float: right;}
