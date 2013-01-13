@@ -65,7 +65,8 @@
 		<!-- javascript code here -->
 		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
     	<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
-    	<script type="text/javascript" src="http://codemirror.net/lib/util/foldcode.js"></script>
+    	<!--script type="text/javascript" src="http://codemirror.net/lib/util/foldcode.js"></script-->
+    	<script type="text/javascript" src="http://codemirror.net/addon/fold/foldcode.js"></script>
     	<script type="text/javascript"> 
 			var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
 			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
@@ -79,7 +80,7 @@
 			  	},
 			  	extraKeys: {"F11": toggleFullscreenEditing, "Esc": toggleFullscreenEditing}
 			});
-			var hlLine = editor.setLineClass(0, "activeline");
+			//var hlLine = editor.setLineClass(0, "activeline");
 
 			    function toggleFullscreenEditing() {
 			        var editorDiv = $('.CodeMirror-scroll');
