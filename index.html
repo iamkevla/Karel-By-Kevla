@@ -1,22 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp" >
 	<head>
 		<meta charset = "utf-8" >
 		<title>Karel by Kevla</title>
-		<link href="karel.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="css/karel.css">
 		<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
 	</head>
-	<body>
+	<body ng-controller="mainCtrl">
 		<h1>Karel by Kevla</h1>
 		
 		<div>
-			<div id="btns" ><button id="play" >Run</button> <button id="init" >Reset</button></div>
+			<div id="btns" ><button ng-click="play()" >Run</button> <button ng-click="init()" >Reset</button></div>
 			<form>
 				<textarea id="code" ></textarea>
 			</form>
 		</div>
 		<div id="btmPanel" >
-			<div id="myWorld" >Creating Karels World...</div>
+			<div id='matrix' >
+				<table>
+					<tr ng-repeat="row in world"  style='height:30px;' >
+						<td ng-repeat="item in row" >
+							<div ng-switch on="$parent.$index == karel.position[0] && $index == karel.position[1]" >	
+								<span ng-switch-when="true">K</span>
+								<span ng-switch-default >{{item}}<span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id='karelinfo'>
+				<p>Position: {{karel.position[0]}}, {{karel.position[1]}}<p>
+				<p>Direction: {{karel.direction}}<p>
+				<p>Beepers: {{karel.beepers}}<p>
+			</div>
 
 			<div id="instructions" >
 				<h3>karel can...</h3>
@@ -63,76 +79,18 @@
 		</div>
 
 		<!-- javascript code here -->
-		<script type="text/javascript" src="http://codemirror.net/lib/codemirror.js"></script>
-    	<script type="text/javascript" src="http://codemirror.net/mode/javascript/javascript.js"></script>
-    	<!--script type="text/javascript" src="http://codemirror.net/lib/util/foldcode.js"></script-->
-    	<script type="text/javascript" src="http://codemirror.net/addon/fold/foldcode.js"></script>
-    	<script type="text/javascript"> 
-			var foldFunc = CodeMirror.newFoldFunction(CodeMirror.braceRangeFinder);
+		<script type="text/javascript" src="https://raw.github.com/marijnh/CodeMirror/master/lib/codemirror.js"></script>
+    	<script type="text/javascript"> 		
 			var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
 			  	mode: "javascript",
-			  	lineNumbers: true,
-			  	lineWrapping: true,
-			  	onGutterClick: foldFunc,	
-			  	onCursorActivity: function() {
-			    	editor.setLineClass(hlLine, null);
-			    	hlLine = editor.setLineClass(editor.getCursor().line, "activeline");
-			  	},
-			  	extraKeys: {"F11": toggleFullscreenEditing, "Esc": toggleFullscreenEditing}
+			  	lineNumbers: true
 			});
-			var hlLine = editor.setLineClass(0, "activeline");
-
-			    function toggleFullscreenEditing() {
-			        var editorDiv = $('.CodeMirror-scroll');
-			        if (!editorDiv.hasClass('fullscreen')) {
-			            toggleFullscreenEditing.beforeFullscreen = { height: editorDiv.height(), width: editorDiv.width() }
-			            editorDiv.addClass('fullscreen');
-			            editorDiv.height('100%');
-			            editorDiv.width('100%');
-			            editor.refresh();
-			        }
-			        else {
-			            editorDiv.removeClass('fullscreen');
-			            editorDiv.height(toggleFullscreenEditing.beforeFullscreen.height);
-			            editorDiv.width(toggleFullscreenEditing.beforeFullscreen.width);
-			            editor.refresh();
-			        }
-			    }
 		</script>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js" ></script>
-		<script type="text/javascript" src="karel.js" ></script>
-		<script type="text/javascript">
-			<!--
- 			$(document).ready(function(){
-				
-				if ( localStorage !== undefined ) {
-					editor.setValue(localStorage.getItem('mycode') || snippet);
-				} else {	
-					editor.setValue( snippet );	
-				}
+		<script type="text/javascript" src="lib/angular/angular.js" ></script>
+		<script type="text/javascript" src="js/app.js" ></script>
+		<script type="text/javascript" src="js/services.js" ></script>
+		<script type="text/javascript" src="js/controllers.js" ></script>
 
-				var myKarel = Object.create(karel);
 
-				myKarel.init();
-
-				$('#play').click(function(){
-					if ( localStorage !== undefined ) {
-						localStorage.setItem('mycode', editor.getValue());
-					}	
-					myKarel.play();
-					drawWorld(myKarel,$('#myWorld'));
-				});
-
-				$('#init').click(function(){
-					myKarel.init();
-					world = setWorld();
-					drawWorld(myKarel,$('#myWorld'));
-				});
-	
-				drawWorld(myKarel,$('#myWorld'));
-
-			});//document ready
-			-->
-		</script>
 	</body>	
 </html>
