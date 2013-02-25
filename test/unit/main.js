@@ -29,66 +29,65 @@ describe('Test mainCtrl', function(){
             },
             editor;  
 
-        beforeEach(inject(function( $rootScope, $controller, myKarel, world ) {
-            editor = mockEditor();
+        beforeEach(inject(function( $rootScope, $controller ) {
             scope = $rootScope.$new();
-            ctrl = $controller( 'mainCtrl', {$scope: scope });
+            ctrl = $controller( 'mainCtrl', {$scope: scope, localStorage: undefined, editor: mockEditor() });
         }));
 
-        iit('should initialise world and karel', function() {
-            
-            //scope.world = world.setWorld();
-            //scope.karel = myKarel.init(scope.world);
-            //scope.karel.init();
-            dump(scope)
+        it('should initialise world', function() {  
+            expect(scope.world[0]).toEqualData([ 0, 0, 1, 0, 'X', 1, 0 ]);
         });
 
+        it('should initialise karel', function() {
+            expect(scope.karel).toBeDefined();
+            expect( scope.karel.direction).toBe("east");
+            expect( scope.karel.position).toEqualData([ 0,0]);  
+        });
 
-
-        describe("Module A", function(){
+        describe("karel ...", function(){
             // test for karel
-            it('should initialise karel', function() { 
-                expect( scope.karel.direction).toBe("east");
-                //equals( myKarel.position[0], 0 , 'karel (x) in initial position 0'); 
-                //equals( myKarel.position[1], 0 , 'karel (y) in initial position 0'); 
-                //ok( !myKarel.leftIsClear(), 'Left is not clear');
-                //ok( myKarel.leftIsBlocked(), 'Left is blocked');
-                //ok( myKarel.frontIsClear(), 'Front is clear');
-                //ok( !myKarel.frontIsBlocked(), 'Front is not blocked');
-                //ok( myKarel.rightIsClear(), 'Right is clear');
-                //ok( !myKarel.rightIsBlocked(), 'Right is not blocked');
+            it('should be aware of surroundings', function() { 
+                expect( scope.karel.leftIsClear() ).toBe(false);
+                expect( scope.karel.leftIsBlocked() ).toBe(true);
+                expect( scope.karel.frontIsClear()).toBe(true)
+                expect( scope.karel.frontIsBlocked() ).toBe(false);
+                expect( scope.karel.rightIsClear() ).toBe(true);
+                expect( scope.karel.rightIsBlocked()).toBe(false);
             });  
-            /*
-            test('karel.move()', function() { 
-                myKarel.move();
-                //ok( karel.move(), 'move Karel');    
-                equals( myKarel.direction, "east" , 'karel still facing east'); 
-                equals( myKarel.position[0], 1 , 'karel (x) has moved one spot'); 
-                equals( myKarel.position[1], 0 , 'karel (y) not in position'); 
-            })  
+            
+            it('should be able to move', function() { 
+                scope.karel.move();  
+                expect( scope.karel.direction ).toBe("east"); 
+                expect( scope.karel.position ).toEqualData([1, 0]);   
+            });
 
-            test('karel.pickBeeper()', function() { 
-                myKarel.move();
-                ok( myKarel.beepersPresent(), 'Beeper is Present');
-                ok( !myKarel.noBeepersPresent(), 'Not no Beeper is Present');
-                myKarel.pickBeeper();
-                ok( !myKarel.beepersPresent(), 'Beeper not Present');
-                ok( myKarel.noBeepersPresent(), 'no Beepers Present');
-            })  
+            it('should be able to pick up beepers', function() { 
+                scope.karel.move();
+                scope.karel.move();
+                expect( scope.karel.beepersPresent() ).toBe(true);
+                expect( scope.karel.noBeepersPresent() ).toBe(false);
+                expect(scope.karel.beepers).toBe(10);
+                scope.karel.pickBeeper();
+                expect( scope.karel.beepersPresent() ).toBe(false);
+                expect( scope.karel.noBeepersPresent() ).toBe(true);
+                expect(scope.karel.beepers).toBe(11);    
+            });
 
-            test('karel.turnLeft()', function() { 
-                myKarel.move();
-                ok( myKarel.frontIsBlocked(), 'Karel blocked by Obstacle');
-                myKarel.turnLeft();
-                ok( myKarel.facingNorth(), 'Karel is facing North');
-            })  
+            it('should be able to change direction', function() { 
+                scope.karel.move();
+                scope.karel.move();
+                scope.karel.move();
+                expect( scope.karel.frontIsBlocked() ).toBe(true);
+                scope.karel.turnLeft();
+                expect( scope.karel.facingNorth() ).toBe(true);
+            });
 
-            test('karel.putBeeper()', function() { 
-                ok( !myKarel.beepersPresent(), 'No Beepers present');
-                myKarel.putBeeper();
-                ok( myKarel.beepersPresent(), 'yes beepers');
-            }) */
-        }); // Module A
+            it('should be able to place a beeper', function() { 
+                expect( scope.karel.beepersPresent()).toBe(false);
+                scope.karel.putBeeper();
+                expect( scope.karel.beepersPresent()).toBe(true)
+            }); 
+        }); // karel 
 
     }); //setup
 

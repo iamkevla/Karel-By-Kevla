@@ -1,4 +1,5 @@
 myApp.value('localStorage', window.localStorage);
+myApp.value('editor', window.editor);
 
 myApp.factory('myKarel', function(){
 	return {

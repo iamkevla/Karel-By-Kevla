@@ -2,8 +2,7 @@
 
 /* Controllers */
 
-
-myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world ){
+myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world, editor ){
 	var setWorld, snippet;
 
 
