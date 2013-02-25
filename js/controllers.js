@@ -3,11 +3,8 @@
 /* Controllers */
 
 
-function mainCtrl( $scope, myKarel, localStorage, world ){
+myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world ){
 	var setWorld, snippet;
-
-
-
 
 
 	snippet  = "/* help karel (K) move around his world avoiding obstacles (X) and collecting beepers. */\n";
@@ -69,4 +66,4 @@ function mainCtrl( $scope, myKarel, localStorage, world ){
 	$scope.karel = myKarel.init($scope.world);
 	$scope.karel.init();
 	
-}
+});
