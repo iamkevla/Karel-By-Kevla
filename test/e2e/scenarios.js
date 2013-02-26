@@ -13,9 +13,22 @@ describe('my app', function() {
 
 
     it('should render view', function() {
-      expect(element('#karelinfo p:first').text()).
-        toMatch("Position: 0, 0");
+      expect(element('#karelinfo p:first').text()).toMatch("Position: 0, 0");
     });
+
+
+
+    it('should be able to run', function() {
+    	element('button:first').click();
+      	expect(element('#karelinfo p:first').text()).not().toMatch("Position: 0, 0");
+    });
+
+
+    it('should be able to reset', function() {
+    	element('button:last').click();
+      	expect(element('#karelinfo p:first').text()).toMatch("Position: 0, 0");
+    });
+
 
   });
 

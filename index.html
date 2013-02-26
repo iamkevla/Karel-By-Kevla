@@ -20,7 +20,7 @@
 				<table>
 					<tr ng-repeat="row in world"  style='height:30px;' >
 						<td ng-repeat="item in row" >
-							<div ng-switch on="$parent.$index == karel.position[0] && $index == karel.position[1]" >	
+							<div ng-switch on="$parent.$index == karel.position[1] && $index == karel.position[0]" >	
 								<span ng-switch-when="true">K</span>
 								<span ng-switch-default >{{item}}<span>
 							</div>
