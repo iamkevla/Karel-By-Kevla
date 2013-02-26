@@ -46,7 +46,7 @@ describe('Test mainCtrl', function(){
 
         describe("karel ...", function(){
             // test for karel
-            it('should be aware of surroundings', function() { 
+            it('should be aware of her surroundings', function() { 
                 expect( scope.karel.leftIsClear() ).toBe(false);
                 expect( scope.karel.leftIsBlocked() ).toBe(true);
                 expect( scope.karel.frontIsClear()).toBe(true)
@@ -55,7 +55,7 @@ describe('Test mainCtrl', function(){
                 expect( scope.karel.rightIsBlocked()).toBe(false);
             });  
             
-            it('should be able to move', function() { 
+            it('should be able to move around', function() { 
                 scope.karel.move();  
                 expect( scope.karel.direction ).toBe("east"); 
                 expect( scope.karel.position ).toEqualData([1, 0]);   
@@ -73,7 +73,7 @@ describe('Test mainCtrl', function(){
                 expect(scope.karel.beepers).toBe(11);    
             });
 
-            it('should be able to change direction', function() { 
+            it('should be able to change her direction', function() { 
                 scope.karel.move();
                 scope.karel.move();
                 scope.karel.move();

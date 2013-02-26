@@ -152,51 +152,31 @@ myApp.factory('myKarel', function(){
 					return !this.rightIsClear();
 				},
 				beepersPresent: function(){
-					if ( world[this.position[1]][this.position[0]] > 0 ){ 
-						return true;
-					} else {
-						return false;
-					}
+					return ( world[this.position[1]][this.position[0]] > 0 );
 				},
 				noBeepersPresent: function(){
 					return !this.beepersPresent();
 				},
 				facingNorth: function(){
-					if (this.direction === 'north') {
-						return true;
-					} else {
-						return false;
-					}
+					return (this.direction === 'north');
 				},
 				notFacingNorth: function(){
 					return !this.facingNorth;
 				},
 				facingSouth: function(){
-					if (this.direction === 'south') {
-						return true;
-					} else {
-						return false;
-					}
+					return (this.direction === 'south');
 				},
 				notFacingSouth: function(){
 					return !this.facingSouth;
 				},
 				facingEast: function(){
-					if (this.direction === 'east') {
-						return true;
-					} else {
-						return false;
-					}
+					return (this.direction === 'east');
 				},
 				notFacingEast: function(){
 					return !this.facingEast;
 				},
 				facingWest: function(){
-					if (this.direction === 'west') {
-						return true;
-					} else {
-						return false;
-					}
+					return (this.direction === 'west');
 				},
 				notFacingWest: function(){
 					return !this.facingWest;
