@@ -1,96 +1,109 @@
+/*services*/
+/*global myApp, window */
+
 myApp.value('localStorage', window.localStorage);
 myApp.value('editor', window.editor);
 
-myApp.factory('myKarel', function(){
+myApp.factory('myKarel', function () {
 	return {
-  		init: function(world){
-  			return { 
-				init: function(pos,beeps,dir){
-					this.position = pos || [0,0];
+        init: function (world) {
+            return {
+				init: function (pos, beeps, dir) {
+					this.position = pos || [0, 0];
 					this.beepers = beeps || 10;
-					this.direction = dir || 'east';		
+					this.direction = dir || 'east';
 				}, //init
-				move: function(){
-					if(this.frontIsClear()){
-						switch(this.direction){
-							case "east":
-								this.position[0]++;
-								break;
-							case "north":
-								this.position[1]--;
-								break;
-							case "west":
-								this.position[0]--;
-								break;
-							case "south":
-								this.position[1]++;
-								break;	
-						} //switch
+				move: function () {
+					if (this.frontIsClear()) {
+                        switch (this.direction) {
+                        case "east":
+                            this.position[0] = this.position[0] + 1;
+                            break;
+                        case "north":
+                            this.position[1] = this.position[1] - 1;
+                            break;
+                        case "west":
+                            this.position[0] = this.position[0] - 1;
+                            break;
+                        case "south":
+                            this.position[1] = this.position[1] + 1;
+                            break;
+                        } //switch
 					} else {
 						throw "karel cannot perform request! - path not clear";
 					}
 				}, //move
-				turnLeft: function(){
-					switch(this.direction){
-						case "east":
-							this.direction = "north";
-							break;
-						case "north":
-							this.direction = "west";
-							break;
-						case "west":
-							this.direction = "south";
-							break;
-						case "south":
-							this.direction = "east";
-							break;	
+				turnLeft: function () {
+					switch (this.direction) {
+                    case "east":
+                        this.direction = "north";
+                        break;
+                    case "north":
+                        this.direction = "west";
+                        break;
+                    case "west":
+                        this.direction = "south";
+                        break;
+                    case "south":
+                        this.direction = "east";
+                        break;
 					}//switch
 				}, //turnLeft
-				putBeeper: function(){
-					if ( this.beepers > 0){
-						world[this.position[1]][this.position[0]]++;
-						this.beepers--;
-					} else { 
+				putBeeper: function () {
+					if (this.beepers > 0) {
+						world[this.position[1]][this.position[0]] = world[this.position[1]][this.position[0]] + 1;
+						this.beepers = this.beepers - 1;
+					} else {
 						throw "karel cannot perform request! - no beepers in bag";
 					}
 				},//putBeeper
-				pickBeeper: function(){
+				pickBeeper: function () {
 					if (world[this.position[1]][this.position[0]] > 0) {
-						world[this.position[1]][this.position[0]]--;
-						this.beepers++;
+						world[this.position[1]][this.position[0]] = world[this.position[1]][this.position[0]] - 1;
+						this.beepers = this.beepers + 1;
 					} else {
 						throw "karel cannot perform this request! - no beepers";
 					}
 				},//pickBeeper
-				play: function(){
+				play: function () {
 					var txt;
 					with(this){
-						try {
-							eval(editor.getValue());
-						} //try
-						catch(err) {
-							txt="There was an error on this page.\n\n";
-							txt+="Error description: " + err.message + "\n\n";
-							txt+="Click OK to continue.\n\n";
-							alert(txt);
-						} //catch
+                        (function () {
+                                var parse = make_parse();
+                            
+                                function go(source) {
+                                    var string, tree;
+                                    try {
+                                        tree = parse(source);
+                                        eval(editor.getValue());
+                                    } catch (e) {
+                                        alert
+                                    }
+                                }
+                            /*
+                                go("var make_parse = " + (make_parse.toSource ?
+                                        make_parse.toSource() : make_parse.toString()) + ";");
+                            */
+
+                        }());
+							
 					} //with
 				},//play
-				frontIsClear: function(){
+				frontIsClear: function () {
 					var front = [];
 					switch(this.direction){
-						case "east":
-							front = [this.position[0]+1,this.position[1]];
-							break;
-						case "west":
-							front = [this.position[0]-1,this.position[1]];
-							break;
-						case "north":
-							front = [this.position[0],this.position[1]-1];
-							break;
-						case "south":
-							front = [this.position[0],this.position[1]+1];
-							break;
+                    case "east":
+                        front = [this.position[0]+1,this.position[1]];
+                        break;
+                    case "west":
+                        front = [this.position[0]-1,this.position[1]];
+                        break;
+                    case "north":
+                        front = [this.position[0],this.position[1]-1];
+                        break;
+                    case "south":
+                        front = [this.position[0],this.position[1]+1];
+                        break;
 					}
 					//if we have reached end of world or a wall return false
 					if ( front[1] < 0 || front[1] >= world.length || front[0] < 0 || front[0] >= world[front[1]].length ||  world[front[1]][front[0]] === 'X' ){
@@ -98,24 +111,24 @@ myApp.factory('myKarel', function(){
 					} 
 					return true;
 				},
-				frontIsBlocked: function(){
+				frontIsBlocked: function () {
 					return !this.frontIsClear();
 				},
-				leftIsClear: function(){
+				leftIsClear: function () {
 					var left = [];
 					switch(this.direction){
-						case "east":
-							left = [this.position[0],this.position[1]-1];
-							break;
-						case "west":
-							left = [this.position[0],this.position[1]+1];
-							break;
-						case "north":
-							left = [this.position[0]-1,this.position[1]];
-							break;
-						case "south":
-							left = [this.position[0]+1,this.position[1]];
-							break;
+                    case "east":
+                        left = [this.position[0],this.position[1]-1];
+                        break;
+                    case "west":
+                        left = [this.position[0],this.position[1]+1];
+                        break;
+                    case "north":
+                        left = [this.position[0]-1,this.position[1]];
+                        break;
+                    case "south":
+                        left = [this.position[0]+1,this.position[1]];
+                        break;
 					}
 					//if we have reached end of world or a wall return false
 					if ( left[1] < 0 || left[1] >= world.length || left[0] <0 || left[0] >= world[left[1]].length ||  world[left[1]][left[0]] === 'X' ){
@@ -123,24 +136,24 @@ myApp.factory('myKarel', function(){
 					} 
 					return true;
 				},
-				leftIsBlocked: function(){
+				leftIsBlocked: function () {
 					return !this.leftIsClear();
 				},
-				rightIsClear: function(){
+				rightIsClear: function () {
 					var right = [];
 					switch(this.direction){
-						case "east":
-							right = [this.position[0],this.position[1]+1];
-							break;
-						case "west":
-							right = [this.position[0],this.position[1]-1];
-							break;
-						case "north":
-							right = [this.position[0]+1,this.position[1]];
-							break;
-						case "south":
-							right = [this.position[0]-1,this.position[1]];
-							break;
+                    case "east":
+                        right = [this.position[0],this.position[1]+1];
+                        break;
+                    case "west":
+                        right = [this.position[0],this.position[1]-1];
+                        break;
+                    case "north":
+                        right = [this.position[0]+1,this.position[1]];
+                        break;
+                    case "south":
+                        right = [this.position[0]-1,this.position[1]];
+                        break;
 					}
 					//if we have reached end of world or a wall return false
 					if ( right[1] < 0 || right[1] >= world.length || right[0] <0 || right[0] >= world[right[1]].length ||  world[right[1]][right[0]] === 'X') {
@@ -148,37 +161,37 @@ myApp.factory('myKarel', function(){
 					} 
 					return true;
 				},
-				rightIsBlocked: function(){
+				rightIsBlocked: function () {
 					return !this.rightIsClear();
 				},
-				beepersPresent: function(){
+				beepersPresent: function () {
 					return ( world[this.position[1]][this.position[0]] > 0 );
 				},
-				noBeepersPresent: function(){
+				noBeepersPresent: function () {
 					return !this.beepersPresent();
 				},
-				facingNorth: function(){
+				facingNorth: function () {
 					return (this.direction === 'north');
 				},
-				notFacingNorth: function(){
+				notFacingNorth: function () {
 					return !this.facingNorth;
 				},
-				facingSouth: function(){
+				facingSouth: function () {
 					return (this.direction === 'south');
 				},
-				notFacingSouth: function(){
+				notFacingSouth: function () {
 					return !this.facingSouth;
 				},
-				facingEast: function(){
+				facingEast: function () {
 					return (this.direction === 'east');
 				},
-				notFacingEast: function(){
+				notFacingEast: function () {
 					return !this.facingEast;
 				},
-				facingWest: function(){
+				facingWest: function () {
 					return (this.direction === 'west');
 				},
-				notFacingWest: function(){
+				notFacingWest: function () {
 					return !this.facingWest;
 				}
 			};//karel 
@@ -186,21 +199,21 @@ myApp.factory('myKarel', function(){
   	};
 });
 
-myApp.factory('world', function(){
+myApp.factory('world', function () {
  
 	return {
-		setWorld : function(w){
+		setWorld : function (w) {
 			switch(w){
-				default:	
-					return ([
-						[0,0,1,0,'X',1,0],
-						[0,0,0,0,0,0,0],
-						[0,0,0,0,0,0,0],
-						['X',0,0,0,1,0,0],
-						[1,0,0,0,0,0,0],
-						[0,0,0,0,0,0,0],
-						[0,1,0,0,0,0,0]
-					]);
+            default:	
+                return ([
+                    [0,0,1,0,'X',1,0],
+                    [0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0],
+                    ['X',0,0,0,1,0,0],
+                    [1,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0],
+                    [0,1,0,0,0,0,0]
+                ]);
 			}
 		}
 	};

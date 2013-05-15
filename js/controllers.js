@@ -1,8 +1,8 @@
-'use strict';
-
 /* Controllers */
+/*global myApp */
 
-myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world, editor ){
+myApp.controller('mainCtrl', function ($scope, myKarel, localStorage, world, editor) {
+    'use strict';
 	var setWorld, snippet;
 
 
@@ -10,8 +10,8 @@ myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world, edi
 	snippet += "var moveAndPick = function(){\n";
 	snippet += "	move();\n";
 	snippet += "	while(beepersPresent()){\n";
-	snippet += "  		pickBeeper();\n";
-	snippet += "	}\n";
+	snippet += "       pickBeeper();\n";
+	snippet += "   }\n";
 	snippet += "};\n";
 	snippet += "\n";
 	snippet += "var turnRight = function(){\n";
@@ -41,23 +41,23 @@ myApp.controller('mainCtrl', function( $scope, myKarel, localStorage, world, edi
 	snippet += "	while( (facingEast() && rightIsClear()) || (facingWest() && leftIsClear()) ){\n";
     snippet += "		turnAround();\n";
     snippet += "		traverseRow();\n";
-  	snippet += "	}\n";
+    snippet += "    }\n";
 	snippet += "})();\n";
 
-	if ( localStorage !== undefined ) {
+	if (localStorage !== undefined) {
 		editor.setValue(localStorage.getItem('mycode') || snippet);
-	} else {	
-		editor.setValue( snippet );	
+	} else {
+		editor.setValue(snippet);
 	}
 
-	$scope.play = function(){
-		if ( localStorage !== undefined ) {
+	$scope.play = function () {
+		if (localStorage !== undefined) {
 			localStorage.setItem('mycode', editor.getValue());
-		}	
+		}
 		$scope.karel.play();
 	};
 
-	$scope.init = function(){
+	$scope.init = function () {
 		$scope.karel.init();
 	};
 
