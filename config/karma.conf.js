@@ -10,11 +10,13 @@ files = [
   'test/unit/**/*.js'
 ];
 
-autoWatch = true;
+autoWatch = false;
 
-browsers = ['PhantomJS'];
+browsers = ['PhantomJS', 'Chrome'];
 
 junitReporter = {
   outputFile: 'test_out/unit.xml',
   suite: 'unit'
 };
+
+singleRun = true;
