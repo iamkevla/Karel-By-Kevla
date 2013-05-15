@@ -1,9 +1,9 @@
 #!/bin/bash
 
-BASE_DIR=`dirname $0`
+
 
 echo ""
 echo "Starting Testacular Server (https://github.com/karma-runner/karma)"
 echo "-------------------------------------------------------------------"
 
-karma start $BASE_DIR/../config/karma.conf.js $*
+karma start ./config/karma.conf.js 
