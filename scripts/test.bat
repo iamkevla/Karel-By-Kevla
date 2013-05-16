@@ -8,4 +8,4 @@ REM - NodeJS (http://nodejs.org/)
 REM - Testacular (npm install -g testacular)
 
 set BASE_DIR=%~dp0
-karma start "%BASE_DIR%\..\config\karma.conf.js" %*
+karma.cmd start "%BASE_DIR%\..\config\karma.conf.js" %*
