@@ -17,7 +17,7 @@ var make_parse = function () {
             return this;
         };
 
-    var = original_scope = {
+    var original_scope = {
         define: function (n) {
             var t = this.def[n.value];
             if (typeof t === "object") {
@@ -517,6 +517,105 @@ var make_parse = function () {
         this.arity = "statement";
         return this;
     });
+
+    /* karel statements */
+    stmt("move", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("turnLeft", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("pickBeeper", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("putBeeper", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("frontIsClear", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("leftIsClear", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("rightIsClear", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("beepersPresent()", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("facingNorth", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("facingSouth", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("facingEast", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    stmt("facingWest", function () {
+        advance("(");
+        advance(")");
+        advance(";");
+        this.arity = "statement";
+        return this;
+    });
+
+    /* end of karel statements */
 
     return function (source) {
         tokens = source.tokens('=<>!+-*&|/%^', '=<>&|');

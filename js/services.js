@@ -68,19 +68,21 @@ myApp.factory('myKarel', function () {
 				play: function () {
 					var txt;
 					with(this){
-                       // (function () {
-                                //var parse = make_parse();
-                            
-                       //         function go(source) {
-                       //             var string, tree;
-                       //             try {
-                       //                 tree = parse(source);
-                                        eval(editor.getValue());
-                       //             } catch (e) {
-                       //                 alert
-                        //            }
-                       //         }
-                       // }());
+                    	(function () {
+                        	var parse = make_parse();
+
+                            (function go(source) {
+                       			var tree;
+                       			
+                       			try {
+                              		tree = parse(source);
+                                    eval(editor.getValue());
+                       			} catch (e) {
+                       				console.log(e);
+                       		    	alert('Error: ' + e.name + ' ' + e.message);
+                                }
+                       		}(editor.getValue()));
+                    	}());
 							
 					} //with
 				},//play
@@ -216,3 +218,20 @@ myApp.factory('world', function () {
 
 });
 
+
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
+}
+
+// Transform a token object into an exception object and throw it.
+
+Object.prototype.error = function (message, t) {
+    t = t || this;
+    t.name = "SyntaxError";
+    t.message = message;
+    throw t;
+};

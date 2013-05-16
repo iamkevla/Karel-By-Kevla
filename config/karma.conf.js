@@ -10,7 +10,9 @@ files = [
   'test/unit/**/*.js'
 ];
 
-autoWatch = false;
+reporters = ['dots'];
+
+autoWatch = true;
 
 browsers = ['PhantomJS'];
 
@@ -19,4 +21,4 @@ junitReporter = {
   suite: 'unit'
 };
 
-singleRun = true;
+singleRun = false;
