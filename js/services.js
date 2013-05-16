@@ -68,24 +68,19 @@ myApp.factory('myKarel', function () {
 				play: function () {
 					var txt;
 					with(this){
-                        (function () {
-                                var parse = make_parse();
+                       // (function () {
+                                //var parse = make_parse();
                             
-                                function go(source) {
-                                    var string, tree;
-                                    try {
-                                        tree = parse(source);
+                       //         function go(source) {
+                       //             var string, tree;
+                       //             try {
+                       //                 tree = parse(source);
                                         eval(editor.getValue());
-                                    } catch (e) {
-                                        alert
-                                    }
-                                }
-                            /*
-                                go("var make_parse = " + (make_parse.toSource ?
-                                        make_parse.toSource() : make_parse.toString()) + ";");
-                            */
-
-                        }());
+                       //             } catch (e) {
+                       //                 alert
+                        //            }
+                       //         }
+                       // }());
 							
 					} //with
 				},//play

@@ -1,16 +1,18 @@
-basePath = '../';
+basePath = '..';
 
 files = [
   ANGULAR_SCENARIO,
   ANGULAR_SCENARIO_ADAPTER,
-  'test/e2e/**/*.js'
+  'test/e2e/*.js'
 ];
 
-autoWatch = false;
+urlRoot = '/__karma__/';
+
+autoWatch = true;
 
 browsers = ['PhantomJS'];
 
-singleRun = true;
+singleRun = false;
 
 proxies = {
   '/': 'http://localhost:8000/'

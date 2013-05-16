@@ -7,9 +7,9 @@ Public Domain
 Karel-By-Kevla is a Javascript version of Karel the Robot. Based on Stanfords learning tool for Programming.
 
 Karel-By-Kevla utilises codemirror (http://codemirror.net/) to provide a repl. 
-It also utilises AngularJs and Testacular for unit testing 
+It also utilises AngularJs and Karma for unit testing 
 The aim is help karel (K) move around his world avoiding obstacles (X) and collecting beepers. 
 
-Recently coverted to AngularJS and Testacular
+Recently coverted to AngularJS and Karma
 
 The source is available at https://github.com/iamkevla/Karel-By-Kevla.
