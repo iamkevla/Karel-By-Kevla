@@ -4,7 +4,7 @@
 describe('my app', function () {
     'use strict';
     beforeEach(function () {
-        browser().navigateTo('http://localhost:8000/index.html');
+        browser().navigateTo('/index.html');
     });
 
 
@@ -14,8 +14,6 @@ describe('my app', function () {
         it('should render view', function () {
             expect(element('#karelinfo p:first').text()).toMatch("Position: 0, 0");
         });
-
-
 
         it('should be able to run', function () {
             element('button:first').click();

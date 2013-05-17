@@ -1,4 +1,4 @@
-basePath = '..';
+basePath = '../';
 
 files = [
   ANGULAR_SCENARIO,
@@ -8,13 +8,13 @@ files = [
 
 urlRoot = '/__karma__/';
 
-runnerPort= 9101;
+reporters = ['dots','junit'];
 
-autoWatch = true;
+autoWatch = false;
 
 browsers = ['PhantomJS'];
 
-singleRun = false;
+singleRun = true;
 
 proxies = {
   '/': 'http://localhost:8000/'
