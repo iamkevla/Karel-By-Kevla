@@ -84,6 +84,7 @@ describe('Test mainCtrl', function () {
                 expect(scope.karel.beepersPresent()).toBe(false);
                 scope.karel.putBeeper();
                 expect(scope.karel.beepersPresent()).toBe(true);
+                expect(false).toBe(true);
             });
         }); // karel 
     }); //setup
