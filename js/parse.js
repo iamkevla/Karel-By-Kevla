@@ -437,7 +437,6 @@ var make_parse = function () {
         return this;
     });
 
-
     stmt("{", function () {
         new_scope();
         var a = statements();
@@ -575,11 +574,15 @@ var make_parse = function () {
         return this;
     });
 
-    stmt("beepersPresent()", function () {
+    stmt("beepersPresent", function () {
         advance("(");
         advance(")");
-        advance(";");
-        this.arity = "statement";
+        if(token.id === ';'){
+            advance(";");  
+        } else {
+            scope.pop();
+        }
+        this.arity = "statement"; 
         return this;
     });
 

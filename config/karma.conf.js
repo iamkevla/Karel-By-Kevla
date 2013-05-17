@@ -10,7 +10,7 @@ files = [
   'test/unit/**/*.js'
 ];
 
-reporters = ['dots'];
+reporters = ['dots', 'junit'];
 
 autoWatch = true;
 

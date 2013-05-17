@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="PhantomJS 1.7 (Windows)" package="unit" timestamp="2013-05-17T03:44:27" id="0" hostname="SYDD31174" tests="7" errors="0" failures="1" time="0.062">
+    <properties>
+      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.7.0 Safari/534.34"/>
+    </properties>
+    <testcase name="should initialise world" time="0.032" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup"/>
+    <testcase name="should initialise karel" time="0.007" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup"/>
+    <testcase name="should be aware of her surroundings" time="0.004" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup karel ___"/>
+    <testcase name="should be able to move around" time="0.005" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup karel ___"/>
+    <testcase name="should be able to pick up beepers" time="0.008" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup karel ___"/>
+    <testcase name="should be able to change her direction" time="0.003" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup karel ___"/>
+    <testcase name="should be able to place a beeper" time="0.003" classname="unit PhantomJS 1.7 (Windows).Test mainCtrl setup karel ___">
+      <failure type="">Expected false to be true.
+</failure>
+    </testcase>
+    <system-out><![CDATA[
+]]></system-out>
+    <system-err/>
+  </testsuite>
+</testsuites>
