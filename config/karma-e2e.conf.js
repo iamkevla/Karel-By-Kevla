@@ -8,6 +8,8 @@ files = [
 
 urlRoot = '/__karma__/';
 
+runnerPort= 9101;
+
 autoWatch = true;
 
 browsers = ['PhantomJS'];
