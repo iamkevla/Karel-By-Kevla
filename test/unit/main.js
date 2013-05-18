@@ -86,9 +86,6 @@ describe('Test mainCtrl', function () {
                 expect(scope.karel.beepersPresent()).toBe(true);
             });
 
-            it('should be able to fix the build', function(){
-                expect(true).toBe(true);
-            });
         }); // karel 
     }); //setup
 

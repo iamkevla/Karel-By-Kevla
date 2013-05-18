@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.7 (Mac)" package="unit" timestamp="2013-05-18T22:54:01" id="0" hostname="Kevins-MacBook-Air.local" tests="8" errors="0" failures="0" time="0.022">
+  <testsuite name="PhantomJS 1.7 (Mac)" package="unit" timestamp="2013-05-18T23:07:39" id="0" hostname="Kevins-MacBook-Air.local" tests="7" errors="0" failures="0" time="0.021">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.7.0 Safari/534.34"/>
     </properties>
-    <testcase name="should initialise world" time="0.012" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup"/>
-    <testcase name="should initialise karel" time="0.001" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup"/>
+    <testcase name="should initialise world" time="0.011" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup"/>
+    <testcase name="should initialise karel" time="0.002" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup"/>
     <testcase name="should be aware of her surroundings" time="0.001" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
     <testcase name="should be able to move around" time="0.001" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
     <testcase name="should be able to pick up beepers" time="0.003" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
     <testcase name="should be able to change her direction" time="0.002" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
     <testcase name="should be able to place a beeper" time="0.001" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
-    <testcase name="should be able to fix the build" time="0.001" classname="unit PhantomJS 1.7 (Mac).Test mainCtrl setup karel ___"/>
     <system-out><![CDATA[
 ]]></system-out>
     <system-err/>
