@@ -85,6 +85,10 @@ describe('Test mainCtrl', function () {
                 scope.karel.putBeeper();
                 expect(scope.karel.beepersPresent()).toBe(true);
             });
+
+            it('should be able to break the build and get notified', function(){
+                expect(false).toBe(true);
+            });
         }); // karel 
     }); //setup
 

@@ -215,4 +215,4 @@ pip-log.txt
 .mr.developer.cfg
 
 #Mine
-test_out/
+test_out/*
