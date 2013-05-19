@@ -578,9 +578,6 @@ var make_parse = function () {
         new_scope();
         advance("(");
         advance(")");  
-        if(token.id === ";"){
-            advance(";");
-        }
         this.arity = "function"; 
         scope.pop();
         return this;
