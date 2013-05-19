@@ -30,7 +30,7 @@ describe('Testing parse > ', function(){
       }
     });
 
-    it('should accept beepersPresent();', function() {
+    it('should accept beepersPresent()', function() {
       
       try{
         tree = parse('beepersPresent()');
@@ -40,7 +40,7 @@ describe('Testing parse > ', function(){
       }
     });
 
-    it('should accept for beepersPresent() as an expression', function() {
+    it('should accept beepersPresent() as an expression', function() {
       
       try{
       	tree = parse('if(beepersPresent()){move();}');

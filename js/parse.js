@@ -581,8 +581,8 @@ var make_parse = function () {
         if(token.id === ";"){
             advance(";");
         }
+        this.arity = "function"; 
         scope.pop();
-        this.arity = "statement"; 
         return this;
     });
 
