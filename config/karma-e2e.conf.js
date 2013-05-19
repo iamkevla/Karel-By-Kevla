@@ -12,7 +12,7 @@ reporters = ['dots','junit'];
 
 autoWatch = false;
 
-browsers = ['PhantomJS','Chrome'];
+browsers = ['PhantomJS'];
 
 singleRun = true;
 
