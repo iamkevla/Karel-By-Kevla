@@ -577,12 +577,14 @@ var make_parse = function () {
     stmt("beepersPresent", function () {
         advance("(");
         advance(")");
-        if(token.id === ';'){
-            advance(";");  
-        } else {
+        if(token.id !== ";"){
+            this.arity = "function"; 
             scope.pop();
+        } else {
+            advance(";");
+            this.arity = "statement"; 
         }
-        this.arity = "statement"; 
+ 
         return this;
     });
 
