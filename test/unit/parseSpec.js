@@ -30,21 +30,20 @@ describe('Testing parse > ', function(){
       }
     });
 
-    it('should accept for beepersPresent();', function() {
+    it('should accept beepersPresent();', function() {
       
       try{
-      	tree = parse('beepersPresent();');
-    	expect(true).toBeTruthy();
+        tree = parse('beepersPresent()');
+    	 expect(true).toBeTruthy();
       } catch(e){
       	expect(false).toBeTruthy()
       }
     });
 
-
     it('should accept for beepersPresent() as an expression', function() {
       
       try{
-      	tree = parse('var bp=beepersPresent();if(bp){move();}');
+      	tree = parse('if(beepersPresent()){move();}');
       	expect(true).toBeTruthy();
       } catch(e){
       	//expect(e.message).not.toBe('Undefined.');
