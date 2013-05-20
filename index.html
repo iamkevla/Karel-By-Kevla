@@ -18,9 +18,9 @@
 		<div id="btmPanel" >
 			<div id='matrix' >
 				<table>
-					<tr ng-repeat="row in world"  style='height:30px;' >
-						<td ng-repeat="item in row" >
-							<div ng-switch on="$parent.$index == karel.position[1] && $index == karel.position[0]" >	
+					<tr ng-repeat="row in world  track by $index"  style='height:30px;' >
+						<td ng-repeat="item in row  track by $index" >
+							<div ng-switch on="(($parent.$index===karel.position[1]) && ($index===karel.position[0]))" >	
 								<span ng-switch-when="true">K</span>
 								<span ng-switch-default >{{item}}<span>
 							</div>
@@ -86,7 +86,7 @@
 			  	lineNumbers: true
 			});
 		</script>
-		<script type="text/javascript" src="lib/angular/angular.js" ></script>
+		<script type="text/javascript" src="lib/angular/angular.min.js" ></script>
 		<script type="text/javascript" src="js/app.js" ></script>
 		<script type="text/javascript" src="js/services.js" ></script>
 		<script type="text/javascript" src="js/controllers.js" ></script>

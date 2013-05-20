@@ -73,13 +73,13 @@ myApp.factory('myKarel', function () {
 
                             (function go(source) {
                        			var tree;
-                       			
-                       			//try {
-                              		//tree = parse(source);
+                       			try {
+                              		//tree = parse(source.toString());
                                     eval(editor.getValue());
-                       			//} catch (e) {
-                       			//	alert('Error: ' + e.name + ' ' + e.value + ' ' + e.message + ' [' + e.from + ', ' + e.to + ']');
-                                //}
+                       			} catch (e) {
+                       				console.log(e);
+                       				alert('Error: ' + e.message );
+                                }
                        		}(editor.getValue()));
                     	}());
 							

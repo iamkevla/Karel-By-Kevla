@@ -264,6 +264,8 @@ var make_parse = function () {
     constant("Object", {});
     constant("Array", []);
 
+
+
     symbol("(literal)").nud = itself;
 
     symbol("this").nud = function () {
@@ -517,7 +519,7 @@ var make_parse = function () {
         return this;
     });
 
-    /* karel statements */
+    // karel statements 
     stmt("move", function () {
         advance("(");
         advance(")");
@@ -550,72 +552,24 @@ var make_parse = function () {
         return this;
     });
 
-    stmt("frontIsClear", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
+    constant("frontIsClear", {});
+    constant("leftIsClear", {});
+    constant("rightIsClear", {});
+    constant("facingNorth", {});
+    constant("facingSouth", {});
+    constant("facingEast", {});
+    constant("facingWest", {});
+    constant("beepersPresent", {});
+    constant("frontIsBlocked", {});
+    constant("leftIsBlocked", {});
+    constant("rightIsBlocked", {});
+    constant("noBeepersPresent", {});
+    constant("notFacingNorth", {});
+    constant("notFacingSouth", {});
+    constant("notFacingEast", {});
+    constant("notFacingWest", {});
 
-    stmt("leftIsClear", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    stmt("rightIsClear", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    stmt("beepersPresent", function () {
-        new_scope();
-        advance("(");
-        advance(")");  
-        this.arity = "function"; 
-        scope.pop();
-        return this;
-    });
-
-    stmt("facingNorth", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    stmt("facingSouth", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    stmt("facingEast", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    stmt("facingWest", function () {
-        advance("(");
-        advance(")");
-        advance(";");
-        this.arity = "statement";
-        return this;
-    });
-
-    /* end of karel statements */
+    // end of karel statements 
 
     return function (source) {
         tokens = source.tokens('=<>!+-*&|/%^', '=<>&|');
