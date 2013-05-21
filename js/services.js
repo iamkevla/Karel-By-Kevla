@@ -68,21 +68,11 @@ myApp.factory('myKarel', function () {
 				play: function () {
 					var txt;
 					with(this){
-                    	(function () {
-                        	var parse = make_parse();
-
-                            (function go(source) {
-                       			var tree;
-                       			try {
-                              		//tree = parse(source.toString());
-                                    eval(editor.getValue());
-                       			} catch (e) {
-                       				console.log(e);
-                       				alert('Error: ' + e.message );
-                                }
-                       		}(editor.getValue()));
-                    	}());
-							
+ 						try {
+                        	eval(editor.getValue());
+                       	} catch (e) {
+                       		alert('Error: ' + e.message );
+                        }							
 					} //with
 				},//play
 				frontIsClear: function () {

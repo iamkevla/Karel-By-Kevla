@@ -6,7 +6,7 @@ myApp.controller('mainCtrl', function ($scope, myKarel, localStorage, world, edi
 	var setWorld, snippet;
 
 
-	snippet  = "/* help karel (K) move around his world avoiding obstacles (X) and collecting beepers. */\n";
+	snippet  = "// help karel (K) move around his world avoiding obstacles (X) and collecting beepers.\n";
 	snippet += "var moveAndPick = function(){\n";
 	snippet += "	move();\n";
 	snippet += "	while(beepersPresent()){\n";
