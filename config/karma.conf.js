@@ -15,7 +15,7 @@ reporters = ['dots','junit'];
 
 autoWatch = false;
 
-browsers = ['PhantomJS'];
+browsers = ['Chrome'];
 
 junitReporter = {
   outputFile: 'test_out/unit.xml',
