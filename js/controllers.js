@@ -64,5 +64,5 @@ myApp.controller('mainCtrl', function ($scope, myKarel, localStorage, world, edi
 	$scope.world = world.setWorld();
 	$scope.karel = myKarel.init($scope.world);
 	$scope.karel.init();
-	
+
 });

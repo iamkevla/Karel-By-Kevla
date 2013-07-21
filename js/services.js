@@ -1,5 +1,6 @@
 /*services*/
 /*global myApp, window */
+/*jslint es5: false, sloppy: true, evil: false */
 
 myApp.value('localStorage', window.localStorage);
 myApp.value('editor', window.editor);
@@ -66,9 +67,9 @@ myApp.factory('myKarel', function () {
 					}
 				},//pickBeeper
 				play: function () {
-					var txt;
-					with(this){
- 						try {
+                    var that = this;
+					with (that) {
+                        try {
                         	eval(editor.getValue());
                        	} catch (e) {
                        		alert('Error: ' + e.message );
